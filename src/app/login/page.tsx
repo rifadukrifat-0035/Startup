@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState, useTransition } from 'react';
 import type { ReactNode } from 'react';
@@ -22,7 +22,7 @@ const signUpSchema = z.object({
     .trim()
     .min(7, 'Phone number is required.')
     .max(20, 'Phone number is too long.')
-    .regex(/^[+()\-\s\d]+$/, 'Enter a valid phone number.'),
+    .regex(/^[+()\\-\\s\\d]+$/, 'Enter a valid phone number.'),
   role: z.enum(['landlord', 'tenant']),
   password: z.string().min(8, 'Password must be at least 8 characters.'),
 });
@@ -162,7 +162,7 @@ export default function LoginPage() {
     setLoginState(null);
 
     startLoginTransition(async () => {
-      const result = await login(defaultAuthState, buildFormData(values));
+      const result = await login(defaultAuthState, buildFormData(values as unknown as Record<string, string>));
       setLoginState(result);
 
       if (result.success) {
@@ -178,7 +178,7 @@ export default function LoginPage() {
     setSignUpState(null);
 
     startSignUpTransition(async () => {
-      const result = await signUp(defaultAuthState, buildFormData(values));
+      const result = await signUp(defaultAuthState, buildFormData(values as unknown as Record<string, string>));
       setSignUpState(result);
 
       if (result.success) {
@@ -265,6 +265,7 @@ export default function LoginPage() {
                 <div className="space-y-6">
                   <div>
                     <p className="text-sm font-medium uppercase tracking-[0.24em] text-sky-300">
+
                       Welcome back
                     </p>
                     <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">
