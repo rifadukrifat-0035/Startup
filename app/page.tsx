@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Home() {
   return (
     <main className="min-h-screen flex items-center justify-center bg-zinc-50 dark:bg-black">
@@ -13,12 +15,9 @@ export default function Home() {
           >
             Go to Login
           </a>
-          <a
-            href="/"
-            className="rounded-md border border-black px-4 py-2"
-          >
+          <Link href="/" className="rounded-md border border-black px-4 py-2">
             Refresh
-          </a>
+          </Link>
         </div>
       </div>
     </main>
